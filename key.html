@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Generator — Nicecat EXE Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-elevated: #12121a;
+            --bg-card: #16161f;
+            --bg-hover: #1c1c26;
+            --border: #252533;
+            --text: #f0f0f5;
+            --text-muted: #8a8a9a;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --accent-glow: rgba(124, 58, 237, 0.4);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --gold: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(245,158,11,0.08) 0%, transparent 50%);
+            animation: meshMove 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes meshMove {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(-20px,-20px) scale(1.05); }
+        }
+
+        /* Layout */
+        .app { display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--bg-elevated);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transition: transform 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .sidebar-logo .icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            -webkit-text-fill-color: white;
+        }
+
+        .nav-section {
+            padding: 1rem 0.75rem;
+            flex: 1;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin: 0.15rem 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border: none;
+            background: none;
+            width: calc(100% - 1rem);
+            font-family: inherit;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            background: rgba(124,58,237,0.08);
+            color: var(--text);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(139,92,246,0.1));
+            color: var(--accent-light);
+            border: 1px solid rgba(124,58,237,0.3);
+        }
+
+        .nav-item .nav-icon {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-avatar {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .user-info { flex: 1; min-width: 0; }
+        .user-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .user-plan {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0.25rem;
+            transition: color 0.2s;
+        }
+        .logout-btn:hover { color: var(--error); }
+
+        /* Main */
+        .main {
+            flex: 1;
+            margin-left: 260px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            height: 64px;
+            background: rgba(10,10,15,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .page-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .admin-badge {
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(217,119,6,0.1));
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #6d28d9);
+            color: white;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn-ghost:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+        }
+        .btn-gold:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+        }
+
+        .btn-danger {
+            background: rgba(239,68,68,0.1);
+            color: var(--error);
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+        .btn-danger:hover {
+            background: rgba(239,68,68,0.2);
+        }
+
+        .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+        .btn-lg { padding: 0.85rem 1.75rem; font-size: 1rem; }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1100px;
+        }
+
+        /* Generator Panel */
+        .gen-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .gen-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--gold));
+        }
+
+        .gen-panel h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .gen-panel > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gen-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+        .form-group select, .form-group input {
+            padding: 0.7rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            min-width: 180px;
+        }
+        .form-group select:focus, .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+        }
+
+        .gen-msg {
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .gen-msg.success {
+            display: block;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: var(--success);
+        }
+        .gen-msg.error {
+            display: block;
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: var(--error);
+        }
+        .gen-msg.info {
+            display: block;
+            background: rgba(124,58,237,0.1);
+            border: 1px solid rgba(124,58,237,0.3);
+            color: var(--accent-light);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-pill .stat-num {
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-pill .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        /* Keys Table */
+        .keys-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .keys-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .keys-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .keys-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .keys-table-wrap {
+            overflow-x: auto;
+        }
+
+        .keys-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .keys-table th {
+            text-align: left;
+            padding: 0.9rem 1.25rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--bg-elevated);
+        }
+        .keys-table td {
+            padding: 0.9rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .keys-table tr:last-child td { border-bottom: none; }
+        .keys-table tr:hover td {
+            background: rgba(124,58,237,0.03);
+        }
+
+        .key-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .key-text {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.03em;
+        }
+        .copy-key-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.2rem;
+            transition: color 0.2s;
+        }
+        .copy-key-btn:hover { color: var(--accent-light); }
+
+        .plan-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .plan-badge.regular {
+            background: rgba(124,58,237,0.15);
+            color: var(--accent-light);
+            border: 1px solid rgba(124,58,237,0.3);
+        }
+        .plan-badge.premium {
+            background: rgba(245,158,11,0.15);
+            color: var(--gold);
+            border: 1px solid rgba(245,158,11,0.3);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-badge.unused {
+            background: rgba(34,197,94,0.1);
+            color: var(--success);
+            border: 1px solid rgba(34,197,94,0.3);
+        }
+        .status-badge.used {
+            background: rgba(239,68,68,0.1);
+            color: var(--error);
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+        .status-badge .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+        }
+        .status-badge.unused .dot { background: var(--success); box-shadow: 0 0 6px var(--success); }
+        .status-badge.used .dot { background: var(--error); }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+        .empty-state .emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .empty-state p { font-size: 0.9rem; }
+
+        /* Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; }
+            .menu-toggle { display: block; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .gen-controls { flex-direction: column; align-items: stretch; }
+            .gen-controls .form-group { width: 100%; }
+            .gen-controls .form-group select, .gen-controls .form-group input { width: 100%; }
+            .keys-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="nicecat_exe_website.html" class="sidebar-logo">
+                    <span class="icon">🐱</span>
+                    Nicecat EXE
+                </a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">Admin</div>
+                <a href="nicecat_exe_dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span> Dashboard
+                </a>
+                <button class="nav-item active">
+                    <span class="nav-icon">🔑</span> Key Generator
+                </button>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name">Admin</div>
+                        <div class="user-plan">Key Manager</div>
+                    </div>
+                    <button class="logout-btn" onclick="window.location.href='nicecat_exe_login.html'" title="Logout">🚪</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <div class="main">
+            <div class="topbar">
+                <div style="display:flex;align-items:center;gap:1rem;">
+                    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+                    <span class="page-title">Key Generator</span>
+                </div>
+                <div class="topbar-actions">
+                    <span class="admin-badge">🔒 Admin Only</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Stats -->
+                <div class="stats-bar">
+                    <div class="stat-pill">
+                        <div class="stat-num" id="statTotal">0</div>
+                        <div class="stat-label">Total Keys</div>
+                    </div>
+                    <div class="stat-pill">
+                        <div class="stat-num" id="statUnused">0</div>
+                        <div class="stat-label">Unused</div>
+                    </div>
+                    <div class="stat-pill">
+                        <div class="stat-num" id="statUsed">0</div>
+                        <div class="stat-label">Redeemed</div>
+                    </div>
+                    <div class="stat-pill">
+                        <div class="stat-num" id="statPremium">0</div>
+                        <div class="stat-label">Premium Keys</div>
+                    </div>
+                </div>
+
+                <!-- Generator -->
+                <div class="gen-panel">
+                    <h2>🔑 Generate License Keys</h2>
+                    <p>Create new license keys for Regular ($50 Robux) or Premium ($100 Robux) plans. Keys are validated on the dashboard redeem page.</p>
+
+                    <div class="gen-controls">
+                        <div class="form-group">
+                            <label>Plan Type</label>
+                            <select id="genPlan">
+                                <option value="Regular">Regular — $50 Robux</option>
+                                <option value="Premium">Premium — $100 Robux</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="number" id="genQty" value="1" min="1" max="50">
+                        </div>
+                        <div class="form-group">
+                            <label>Note (optional)</label>
+                            <input type="text" id="genNote" placeholder="e.g. Discord giveaway">
+                        </div>
+                        <button class="btn btn-primary btn-lg" onclick="generateKeys()">➕ Generate Keys</button>
+                    </div>
+
+                    <div class="gen-msg" id="genMsg"></div>
+                </div>
+
+                <!-- Keys List -->
+                <div class="keys-section">
+                    <div class="keys-header">
+                        <h3>📋 Generated Keys</h3>
+                        <div class="keys-actions">
+                            <button class="btn btn-ghost btn-sm" onclick="exportUnused()">📤 Export Unused</button>
+                            <button class="btn btn-ghost btn-sm" onclick="exportAll()">📤 Export All</button>
+                            <button class="btn btn-danger btn-sm" onclick="clearAllKeys()">🗑️ Clear All</button>
+                        </div>
+                    </div>
+                    <div class="keys-table-wrap">
+                        <table class="keys-table">
+                            <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Plan</th>
+                                    <th>Status</th>
+                                    <th>Redeemed By</th>
+                                    <th>Created</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="keysBody">
+                                <!-- Filled by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== KEY GENERATION ==========
+        function generateKeyString() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let parts = [];
+            for (let p = 0; p < 3; p++) {
+                let part = '';
+                for (let i = 0; i < 4; i++) {
+                    part += chars[Math.floor(Math.random() * chars.length)];
+                }
+                parts.push(part);
+            }
+            return 'NICE-' + parts.join('-');
+        }
+
+        function getKeys() {
+            return JSON.parse(localStorage.getItem('nicecat_keys') || '[]');
+        }
+
+        function saveKeys(keys) {
+            localStorage.setItem('nicecat_keys', JSON.stringify(keys));
+        }
+
+        function generateKeys() {
+            const plan = document.getElementById('genPlan').value;
+            const qty = parseInt(document.getElementById('genQty').value) || 1;
+            const note = document.getElementById('genNote').value.trim();
+            const msg = document.getElementById('genMsg');
+
+            if (qty < 1 || qty > 50) {
+                msg.className = 'gen-msg error';
+                msg.textContent = '⚠️ Quantity must be between 1 and 50.';
+                return;
+            }
+
+            const keys = getKeys();
+            const newKeys = [];
+            for (let i = 0; i < qty; i++) {
+                let key;
+                do { key = generateKeyString(); }
+                while (keys.some(k => k.key === key));
+
+                newKeys.push({
+                    key: key,
+                    plan: plan,
+                    used: false,
+                    usedBy: null,
+                    created: Date.now(),
+                    note: note || '-'
+                });
+            }
+
+            keys.push(...newKeys);
+            saveKeys(keys);
+            renderKeys();
+            updateStats();
+
+            msg.className = 'gen-msg success';
+            msg.textContent = '✅ Generated ' + qty + ' ' + plan + ' key' + (qty > 1 ? 's' : '') + '!';
+            document.getElementById('genNote').value = '';
+        }
+
+        // ========== RENDERING ==========
+        function renderKeys() {
+            const keys = getKeys();
+            const tbody = document.getElementById('keysBody');
+
+            if (keys.length === 0) {
+                tbody.innerHTML = `
+                    <tr><td colspan="6">
+                        <div class="empty-state">
+                            <div class="emoji">🔑</div>
+                            <p>No keys generated yet. Use the panel above to create keys.</p>
+                        </div>
+                    </td></tr>
+                `;
+                return;
+            }
+
+            // Sort by newest first
+            const sorted = [...keys].sort((a, b) => b.created - a.created);
+
+            tbody.innerHTML = sorted.map(k => {
+                const date = new Date(k.created).toLocaleDateString();
+                const time = new Date(k.created).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                return `
+                    <tr>
+                        <td>
+                            <div class="key-cell">
+                                <span class="key-text">${k.key}</span>
+                                <button class="copy-key-btn" onclick="copyKey('${k.key}')" title="Copy">📋</button>
+                            </div>
+                        </td>
+                        <td><span class="plan-badge ${k.plan.toLowerCase()}">${k.plan}</span></td>
+                        <td>
+                            <span class="status-badge ${k.used ? 'used' : 'unused'}">
+                                <span class="dot"></span>
+                                ${k.used ? 'Used' : 'Unused'}
+                            </span>
+                        </td>
+                        <td style="font-family:Inter;">${k.usedBy || '-'}</td>
+                        <td style="font-family:Inter;font-size:0.8rem;color:var(--text-muted);">${date} ${time}</td>
+                        <td style="font-family:Inter;font-size:0.8rem;color:var(--text-muted);">${k.note}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateStats() {
+            const keys = getKeys();
+            document.getElementById('statTotal').textContent = keys.length;
+            document.getElementById('statUnused').textContent = keys.filter(k => !k.used).length;
+            document.getElementById('statUsed').textContent = keys.filter(k => k.used).length;
+            document.getElementById('statPremium').textContent = keys.filter(k => k.plan === 'Premium').length;
+        }
+
+        // ========== ACTIONS ==========
+        function copyKey(key) {
+            navigator.clipboard.writeText(key).then(() => {
+                alert('📋 Key copied: ' + key);
+            });
+        }
+
+        function exportUnused() {
+            const keys = getKeys().filter(k => !k.used);
+            if (keys.length === 0) { alert('No unused keys to export.'); return; }
+            const text = keys.map(k => k.key + ' [' + k.plan + ']').join('\n');
+            navigator.clipboard.writeText(text).then(() => {
+                alert('📋 ' + keys.length + ' unused keys copied to clipboard!');
+            });
+        }
+
+        function exportAll() {
+            const keys = getKeys();
+            if (keys.length === 0) { alert('No keys to export.'); return; }
+            const text = keys.map(k =>
+                k.key + ' | ' + k.plan + ' | ' + (k.used ? 'USED by ' + k.usedBy : 'UNUSED') + ' | ' + new Date(k.created).toLocaleString()
+            ).join('\n');
+            navigator.clipboard.writeText(text).then(() => {
+                alert('📋 All ' + keys.length + ' keys copied to clipboard!');
+            });
+        }
+
+        function clearAllKeys() {
+            if (!confirm('🚨 DELETE ALL KEYS?\n\nThis will permanently remove every generated key from storage. This cannot be undone.\n\nAre you sure?')) return;
+            localStorage.removeItem('nicecat_keys');
+            renderKeys();
+            updateStats();
+            const msg = document.getElementById('genMsg');
+            msg.className = 'gen-msg info';
+            msg.textContent = '🗑️ All keys cleared.';
+        }
+
+        // Init
+        renderKeys();
+        updateStats();
+    </script>
+</body>
+</html>
