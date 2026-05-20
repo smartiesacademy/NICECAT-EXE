@@ -1,0 +1,92 @@
+[
+  {
+    "id": 2753915549,
+    "name": "Blox Fruits",
+    "icon": "\ud83c\udf4e",
+    "basePlayers": 500000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/2753915549/Blox-Fruits",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\"))()"
+  },
+  {
+    "id": 4924922222,
+    "name": "Brookhaven",
+    "icon": "\ud83c\udfe0",
+    "basePlayers": 800000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/4924922222/Brookhaven-RP",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/nxvap/Hexagon/refs/heads/main/brookhaven\"))()"
+  },
+  {
+    "id": 92416421522960,
+    "name": "Kick a Lucky Block",
+    "icon": "\ud83c\udfb2",
+    "basePlayers": 5000,
+    "tag": "new",
+    "url": "https://www.roblox.com/games/13188262005/Kick-a-Lucky-Block",
+    "script": "loadstring(game:HttpGet(\"https://api.luarmor.net/files/v4/loaders/339a2957388227ef58c0d1bffab6de85.lua\"))()"
+  },
+  {
+    "id": 79546208627805,
+    "name": "99 Nights in the Forest",
+    "icon": "\ud83c\udf32",
+    "basePlayers": 8000,
+    "tag": "new",
+    "url": "https://www.roblox.com/games/79546208627805/99-Nights-in-the-Forest",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua\", true))()"
+  },
+  {
+    "id": 89469502395769,
+    "name": "Slime RNG",
+    "icon": "\ud83d\udfe2",
+    "basePlayers": 3500,
+    "tag": "new",
+    "url": "https://www.roblox.com/games/123456789/Slime-RNG",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/skxller1/Slimerng/refs/heads/main/mainslimerng.lua\"))()"
+  },
+  {
+    "id": 10449761463,
+    "name": "The Strongest Battlegrounds",
+    "icon": "\u2694\ufe0f",
+    "basePlayers": 25000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/10449761463/The-Strongest-Battlegrounds",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/xploitforceofficial-stack/ZeOrbitv4Main/refs/heads/main/zeorbitv4.lua\"))()"
+  },
+  {
+    "id": 142823291,
+    "name": "Murder Mystery 2",
+    "icon": "\ud83d\udd2a",
+    "basePlayers": 45000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/142823291/Murder-Mystery-2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/littl3prince/Moon/main/Moon_V1\"))()"
+  },
+  {
+    "id": 126884695634066,
+    "name": "Grow a Garden",
+    "icon": "\ud83c\udf31",
+    "basePlayers": 12000,
+    "tag": "new",
+    "url": "https://www.roblox.com/games/126884695634066/Grow-a-Garden",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/shvl00/shvled/refs/heads/main/l04d3r.bf\"))()"
+  },
+  {
+    "id": 70671905624144,
+    "name": "Steal a Baddie",
+    "icon": "\ud83d\udc85",
+    "basePlayers": 8000,
+    "tag": "new",
+    "url": "https://www.roblox.com/games/70671905624144/Steal-a-Baddie",
+    "script": "loadstring(game:HttpGet(\"https://scriptblox.com/raw/Steal-a-Baddie-UNBANNED-BEST-GUI-43356\"))()"
+  },
+  {
+    "id": 192800,
+    "name": "Work at a Pizza Place",
+    "icon": "\ud83c\udf55",
+    "basePlayers": 15000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/192800/Work-at-a-Pizza-Place",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/welomenchaina/Loader/main/ScriptLoader\"))()"
+  }
+]

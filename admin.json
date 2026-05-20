@@ -1,0 +1,38 @@
+[
+  {
+    "name": "AK Admin",
+    "icon": "\ud83d\udc51",
+    "section": "admin",
+    "script": "loadstring(game:HttpGet(\"https://angelical.me/ak.lua\"))()"
+  },
+  {
+    "name": "QuirkyCMD",
+    "icon": "\ud83d\udca5",
+    "section": "admin",
+    "script": "loadstring(game:HttpGet(\"https://rawscripts.net/raw/Universal-Script-QuirkyCMD-FE-admin-8667\"))()"
+  },
+  {
+    "name": "Infinite Yield",
+    "icon": "\u267e\ufe0f",
+    "section": "admin",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\"))()"
+  },
+  {
+    "name": "Comet Admin",
+    "icon": "\u2604\ufe0f",
+    "section": "admin",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/FilteringEnabled/FE/main/Comet\"))()"
+  },
+  {
+    "name": "IOrb Admin",
+    "icon": "\ud83d\udd2e",
+    "section": "admin",
+    "script": "loadstring(game:HttpGet(\"https://rawscripts.net/raw/Universal-Script-IOrb-thingy-42143\"))()"
+  },
+  {
+    "name": "Strawberry CMD",
+    "icon": "\ud83c\udf53",
+    "section": "admin",
+    "script": "loadstring(game:HttpGet('https://strawberrycmd.netlify.app'))()"
+  }
+]
