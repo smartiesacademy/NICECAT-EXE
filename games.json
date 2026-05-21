@@ -2,8 +2,8 @@
   {
     "id": 2753915549,
     "name": "Blox Fruits",
-    "icon": "\ud83c\udf4e",
-    "basePlayers": 500000,
+    "icon": "🍎",
+    "basePlayers": Infinity,
     "tag": "popular",
     "url": "https://www.roblox.com/games/2753915549/Blox-Fruits",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\"))()"
@@ -11,7 +11,7 @@
   {
     "id": 4924922222,
     "name": "Brookhaven",
-    "icon": "\ud83c\udfe0",
+    "icon": "🏠",
     "basePlayers": 800000,
     "tag": "popular",
     "url": "https://www.roblox.com/games/4924922222/Brookhaven-RP",
@@ -20,7 +20,7 @@
   {
     "id": 92416421522960,
     "name": "Kick a Lucky Block",
-    "icon": "\ud83c\udfb2",
+    "icon": "🎲",
     "basePlayers": 5000,
     "tag": "new",
     "url": "https://www.roblox.com/games/13188262005/Kick-a-Lucky-Block",
@@ -29,7 +29,7 @@
   {
     "id": 79546208627805,
     "name": "99 Nights in the Forest",
-    "icon": "\ud83c\udf32",
+    "icon": "🌲",
     "basePlayers": 8000,
     "tag": "new",
     "url": "https://www.roblox.com/games/79546208627805/99-Nights-in-the-Forest",
@@ -38,7 +38,7 @@
   {
     "id": 89469502395769,
     "name": "Slime RNG",
-    "icon": "\ud83d\udfe2",
+    "icon": "🟢",
     "basePlayers": 3500,
     "tag": "new",
     "url": "https://www.roblox.com/games/123456789/Slime-RNG",
@@ -47,7 +47,7 @@
   {
     "id": 10449761463,
     "name": "The Strongest Battlegrounds",
-    "icon": "\u2694\ufe0f",
+    "icon": "⚔️",
     "basePlayers": 25000,
     "tag": "popular",
     "url": "https://www.roblox.com/games/10449761463/The-Strongest-Battlegrounds",
@@ -56,7 +56,7 @@
   {
     "id": 142823291,
     "name": "Murder Mystery 2",
-    "icon": "\ud83d\udd2a",
+    "icon": "🔪",
     "basePlayers": 45000,
     "tag": "popular",
     "url": "https://www.roblox.com/games/142823291/Murder-Mystery-2",
@@ -65,7 +65,7 @@
   {
     "id": 126884695634066,
     "name": "Grow a Garden",
-    "icon": "\ud83c\udf31",
+    "icon": "🌱",
     "basePlayers": 12000,
     "tag": "new",
     "url": "https://www.roblox.com/games/126884695634066/Grow-a-Garden",
@@ -74,7 +74,7 @@
   {
     "id": 70671905624144,
     "name": "Steal a Baddie",
-    "icon": "\ud83d\udc85",
+    "icon": "💅",
     "basePlayers": 8000,
     "tag": "new",
     "url": "https://www.roblox.com/games/70671905624144/Steal-a-Baddie",
@@ -83,10 +83,37 @@
   {
     "id": 192800,
     "name": "Work at a Pizza Place",
-    "icon": "\ud83c\udf55",
+    "icon": "🍕",
     "basePlayers": 15000,
     "tag": "popular",
     "url": "https://www.roblox.com/games/192800/Work-at-a-Pizza-Place",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/welomenchaina/Loader/main/ScriptLoader\"))()"
+  },
+  {
+    "id": 205224386,
+    "name": "Hide and Seek Extreme",
+    "icon": "🙈",
+    "basePlayers": 8000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/205224386/Hide-and-Seek-Extreme",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/nick7-hub/roblox/main/scripts/hub.lua\"))()"
+  },
+  {
+    "id": 17698425045,
+    "name": "Fight in a School",
+    "icon": "🥊",
+    "basePlayers": 12000,
+    "tag": "popular",
+    "url": "https://www.roblox.com/games/17698425045/fight-in-a-school",
+    "script": "loadstring(game:HttpGet(\"https://rawscripts.net/raw/UNBAN-WAVE-fight-in-a-school-FIAS-IsraelWare-GUI-121276\"))()"
+  },
+  {
+    "id": 95082159892680,
+    "name": "+1 Speed Keyboard Escape",
+    "icon": "⌨️",
+    "basePlayers": 110000,
+    "tag": "new",
+    "url": "https://www.roblox.com/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate",
+    "script": "loadstring(game:HttpGet(\"https://gist.githubusercontent.com/nex-no1/ce10c68544ec307586f36cf1e6d15e98/raw/\"))()"
   }
 ]
