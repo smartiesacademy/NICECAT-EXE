@@ -3,7 +3,7 @@
     "id": 2753915549,
     "name": "Blox Fruits",
     "icon": "🍎",
-    "basePlayers": Infinity,
+    "basePlayers": 225000,
     "tag": "popular",
     "url": "https://www.roblox.com/games/2753915549/Blox-Fruits",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\"))()"
