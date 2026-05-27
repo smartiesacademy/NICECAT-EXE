@@ -1,38 +1,38 @@
 [
   {
     "name": "AK Admin",
-    "icon": "\ud83d\udc51",
+    "icon": "👑",
     "section": "admin",
-    "script": "loadstring(game:HttpGet(\"https://angelical.me/ak.lua\"))()"
+    "script": "IgYCATAVBlteVR4pCA4AeSkARkB1UzpBQQ03FQRBCh0ZLwcEAC8IF1NcHFsrRgIObQ0BUxIbH2ZA"
   },
   {
     "name": "QuirkyCMD",
-    "icon": "\ud83d\udca5",
+    "icon": "💥",
     "section": "admin",
-    "script": "loadstring(game:HttpGet(\"https://rawscripts.net/raw/Universal-Script-QuirkyCMD-FE-admin-8667\"))()"
+    "script": "IgYCATAVBlteVR4pCA4AeSkARkB1UzpBQQ03FQRBCh0ZPAgUFiATHUJEQRggDBdKMQADHWVcXzgMERYiDVlhU0BfPh1ONDYIBllJcXsKRCUgbgAQX1lcG3ZfVVJhSF0aGQ=="
   },
   {
     "name": "Infinite Yield",
-    "icon": "\u267e\ufe0f",
+    "icon": "♾️",
     "section": "admin",
-    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\"))()"
+    "script": "IgYCATAVBlteVR4pCA4AeSkARkB1UzpBQQ03FQRBCh0ZPAgUSyQIAFpFUEM9DBEGLA8AV15GGC0GDkoGBRNXeWsZJwcFDC0IAFdJW1MiDUwIIhIAV0IdRSEcEQYmQ10bGBs="
   },
   {
     "name": "Comet Admin",
-    "icon": "\u2604\ufe0f",
+    "icon": "☄️",
     "section": "admin",
-    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/FilteringEnabled/FE/main/Comet\"))()"
+    "script": "IgYCATAVBlteVR4pCA4AeSkARkB1UzpBQQ03FQRBCh0ZPAgUSyQIAFpFUEM9DBEGLA8AV15GGC0GDkoFCBhGVUBfIA4mCyIDGFdUHXALRg4EKg9bcV9fUzpLSkxrSA=="
   },
   {
     "name": "IOrb Admin",
-    "icon": "\ud83d\udd2e",
+    "icon": "🔮",
     "section": "admin",
-    "script": "loadstring(game:HttpGet(\"https://rawscripts.net/raw/Universal-Script-IOrb-thingy-42143\"))()"
+    "script": "IgYCATAVBlteVR4pCA4AeSkARkB1UzpBQQ03FQRBCh0ZPAgUFiATHUJEQRggDBdKMQADHWVcXzgMERYiDVlhU0BfPh1OLAwTFh9EWl8gDhpId1NFBgMQH2dBSg=="
   },
   {
     "name": "Strawberry CMD",
-    "icon": "\ud83c\udf53",
+    "icon": "🍓",
     "section": "admin",
-    "script": "loadstring(game:HttpGet('https://strawberrycmd.netlify.app'))()"
+    "script": "IgYCATAVBlteVR4pCA4AeSkARkB1UzpBRA03FQRBCh0ZPR0RBDQDEUBCS1UjDU0LJhUYW1ZLGC8ZE0JqSFwb"
   }
 ]
